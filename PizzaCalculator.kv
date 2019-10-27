@@ -1,0 +1,372 @@
+#:kivy 1.10.1
+
+
+
+<IrisImageButton>:
+
+
+
+
+
+<WelcomeScreen>:
+    id: welcome_screen
+
+
+    AnchorLayout:
+
+        anchor_x: "center"
+        canvas.before:
+            Color:
+                rgba: 1, .0, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size    
+        BoxLayout:
+
+            orientation: "vertical"
+
+            size_hint: (1,1)
+
+            spacing: 10
+
+            Image:
+                source: "./images/title.png"
+            Image:
+                source: "./images/cartoon pizza.jpg"
+
+            AnchorLayout:
+
+                anchor_x: "center"
+                size_hint_y: .7
+
+                BoxLayout:
+
+                    size_hint: 1, 1
+                    orientation: "horizontal"
+                    spacing: 1
+
+
+                    IrisImageButton:
+                        id: cash_id
+                        source: "./images/cash.jpg/"
+
+                    IrisImageButton:
+                        id: cartoon_pizzaa_id
+                        source: "./images/cartoon pizzaa.gif"
+                        on_press: root.manager.current = "manager_screen" 
+<ManagerScreen>:
+    id: manager_screen
+
+
+    AnchorLayout:
+
+        anchor_x: "center"
+
+
+        BoxLayout:
+
+            orientation: "vertical"
+            size_hint: (1,1)
+            spacing: 10
+
+
+            Label:
+
+
+                size_hint_y: .4
+
+                text: "Manager Screen"
+
+                vllign: "bottom"
+
+                bold: True
+
+                font_name: "C:\\windows\\fonts\\segoesc"
+                
+                font_size: 50
+
+                padding: 0, 0
+
+            BoxLayout:
+
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing: 4
+
+                Image:
+
+                    size_hint_x: .2
+                    source: "./images/pepperoni pizza.png"
+
+                Label:
+                    size_hint_x: .7
+                    text: " What is the price of a pepperoni pizza tonight?"
+                    font_name: "C:\\windows\\fonts\\segoesc"
+                    font_size: 20
+                    halign: "center"
+
+                TextInput:
+                    id: txt_pepperoni_pizza_price
+                    size_hint_x: .1
+                    text: "0.00"
+                    focus: True
+
+            BoxLayout:
+
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing: 4
+
+                Image:
+
+                    size_hint_x: .2
+                    source: "./images/hawaiian pizza.jpg"
+
+                Label:
+                    size_hint_x: .7
+                    text: " What is the price of a hawaiian pizza tonight?"
+                    font_name: "C:\\windows\\fonts\\segoesc"
+                    font_size: 20
+                    halign: "center"
+
+                TextInput:
+                    id: txt_hawaiian_pizza_price
+                    size_hint_x: .1
+                    text: "0.00"
+                    focus: True
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing: 4
+                Image:
+
+                    size_hint_x: .2
+                    source: "./images/cheese pizza.png"
+
+                Label:
+                    size_hint_x: .7
+                    text: " What is the price of a cheeser pizza tonight?"
+                    font_name: "C:\\windows\\fonts\\segoesc"
+                    font_size: 20
+                    halign: "center"
+
+                TextInput:
+                    id: txt_cheese_pizza_price
+                    size_hint_x: .1
+                    text: "0.00"
+                    focus: True
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .2
+
+
+                Button:
+                    size_hint_x: 0.25
+                    font_size:18
+                    text: "Welcome"
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    on_press: root.welcome()
+
+                Label:
+                    size_hint_x: .5
+                     # i'm a placeholder to space out these buttons
+
+
+                Button:
+                    size_hint_x: 0.25
+                    font_size:17
+                    text: " Save Changes"
+                    font_name: "C:\\windows\\fonts\\segoesc"
+                    on_press: root.save()
+<CustomerScreen>:
+    id: customer_screen
+
+    AnchorLayout:
+
+        anchor_x: "center"
+        canvas.before:
+            Color:
+                rgba: .980, .105, .615, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+        
+            orientation: "vertical"
+
+            size_hint: (1,1)
+
+            spacing: 10
+
+            Image:
+                source: "./images/title.png"
+
+                size_hint_y: .2
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing: 4
+
+                Image:
+                    size_hint: (.2, .5)
+                    source: "./images/pepperoni pizza.png"
+
+                Label:
+                    color: 0, .659, .953, 1
+                    size_hint: (.1, .5)
+                    text: "$" + str(root.lbl_pepperoni_pizza_price)
+                    font_size: 20
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                Label:
+                    color: 0,659, 953, 1
+                    size_hint: (.6, .5)
+                    text: "How many pepperoni pizzas would you like to order?"
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                TextInput:
+                    id: txt_pepperoni_pizza_quanity
+                    size_hint: (.1, .4)
+                    text: "0"
+                    focus: True
+                    write_tab: False
+                    on_text: root.pepperoni_quanity_on_change()
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing: 4
+
+                Image:
+                    size_hint: (.2, .5)
+                    source: "./images/hawaiian pizza.jpg"
+
+                Label:
+                    color: 0, .659, .953, 1
+                    size_hint: (.1, .5)
+                    text: "$" + str(root.lbl_hawaiian_pizza_price)
+                    font_size: 20
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                Label:
+                    color: 0,659, 953, 1
+                    size_hint: (.6, .5)
+                    text: "How many hawaiian pizzas would you like to order?"
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                TextInput:
+                    id: txt_hawaiian_pizza_quanity
+                    size_hint: (.1, .4)
+                    text: "0"
+                    focus: True
+                    write_tab: False
+                    on_text: root.hawaiian_quanity_on_change()
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing:4
+
+                Image:
+                    size_hint: (.2, .5)
+                    source: "./images/cheese pizza.png"
+
+                Label:
+                    color: 0, .659, .953, 1
+                    size_hint: (.1, .5)
+                    text: "$" + str(root.lbl_cheese_pizza_price)
+                    font_size: 20
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                Label:
+                    color: 0,659, 953, 1
+                    size_hint: (.6, .3)
+                    text: "How many cheese pizzas would you like to order?"
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                TextInput:
+                    id: txt_cheese_pizza_quanity
+                    size_hint: (.1, .4)
+                    text: "0"
+                    focus: True
+                    write_tab: False
+                    on_text: root.cheese_quanity_on_change()
+
+            
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing: 4
+
+                Label:
+                    color: 0, .659, .953, 1
+                    size_hint: (.5, .5)
+                    text: "Total order"
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                Label:
+                    color: 0,659, 953, 1
+                    size_hint: (.2, .5)
+                    text: "$" + str(root.total_order)
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing: 4
+
+
+                Label:
+                    color: 0,659, 953, 1
+                    size_hint: (.5, .5)
+                    text: "Sales Tax"
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                Label:
+                    color: 0, .659, .953, 1
+                    size_hint: (.2, .5)
+                    text: "$" + str(root.sales_tax_amount)
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .2
+                spacing: 4
+
+
+                Label:
+                    color: 0,659, 953, 1
+                    size_hint: (.5, .5)
+                    text: "Grand Total"
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
+
+                Label:
+                    color: 0, .659, .953, 1
+                    size_hint: (.2, .5)
+                    text: "$" + str(root.grand_total)
+                    font_size: 16
+                    font_name:"C:\\windows\\fonts\\segoesc"
+                    hallign: "center"
